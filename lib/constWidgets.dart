@@ -47,4 +47,34 @@ isDense: true,
     );
   }
 
+
+  Widget priceTextField(TextEditingController textEditingController,String lblText){
+
+    return TextFormField(controller: textEditingController,
+      cursorColor: blackColor,
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.zero,
+        isDense: true,
+        labelText: lblText,
+        labelStyle: TextStyle(color: greyColor),
+
+
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: blackColor),
+        ),
+
+        border: UnderlineInputBorder(
+          borderSide: BorderSide(color: blackColor),
+        ),
+
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: blackColor),
+        ),
+      ),
+
+
+    );
+
+  }
+
 }
