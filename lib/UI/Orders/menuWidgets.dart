@@ -2,9 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:trolly_store/Controller/menucontroller.dart';
+import 'package:trolly_store/UI/Orders/eachItem.dart';
 
 import '../../constWidgets.dart';
 import 'package:get/get.dart';
+
+import '../specificationdetails.dart';
 
 // ignore: must_be_immutable
 class Menu extends StatelessWidget {
@@ -19,8 +22,102 @@ class Menu extends StatelessWidget {
   Widget build(BuildContext context) {
     Orientation orientation = MediaQuery.of(context).orientation;
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add,color: Colors.white),
+        onPressed: (){},
+        backgroundColor: Colors.red,
+      ),
       backgroundColor: constantWidget.whiteColor,
       appBar: AppBar(
+        actions: [     IconButton(icon: Icon(Icons.filter_list,color: Colors.black,), onPressed: (){
+          Get.dialog(Container(
+            height: orientation==Orientation.landscape?Get.height*5:0,
+            margin: orientation == Orientation.portrait
+                ? const EdgeInsets.only(
+                top: 40, bottom: 291, left: 150, right: 10)
+                : const EdgeInsets.symmetric(
+                horizontal: 180, vertical: 100),
+            decoration: new BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: Column(
+              // mainAxisAlignment:
+              // MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 7,),
+                Container(height: Get.height * 0.04,
+                  color: Colors.red,
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Material(
+                    child: TextField(
+                      decoration: new InputDecoration(
+                          prefixIcon: Icon(Icons.search, size: 15,),
+                          contentPadding: const EdgeInsets.only(top: 20, right: 20),
+                          hintText: "Enter Item Name",
+                          hintStyle: TextStyle(color: Colors.black45, fontSize: 13),
+                          // filled: true,
+                          // fillColor: Colors.black12,
+                          enabledBorder: new OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50),
+                            borderSide: BorderSide(color: Colors.black, width: 1),
+                          ),
+                          focusedBorder: new OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50),
+                              borderSide: BorderSide(color: Colors.black, width: 1)
+                          )
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 8,),
+                Container(
+                  height: Get.height * 0.4,
+                  width: 300,
+                  child: ListView.separated(
+                      physics: ScrollPhysics(),
+                      itemBuilder: (context, index){
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Container(
+                            height: 25,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Testing", style: TextStyle(fontWeight: FontWeight.normal, color: Colors.black, decoration: TextDecoration.none, fontSize: 12),),
+                                Material(
+                                  borderOnForeground: false,
+                                  child: Checkbox(
+                                      activeColor: Colors.black54,
+                                      value: true, onChanged: (value){
+                                  }),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }, separatorBuilder: (context, index){
+                    return Divider(thickness: 1, color: Colors.black45,);
+                  }, itemCount: 30),
+                ),
+                SizedBox(height: Get.height*0.03,),
+                Expanded(
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 5),
+                    color: Colors.redAccent,
+                    height: Get.height * 0.06,
+                    width: double.infinity,
+                    child: RaisedButton(
+                      child: Text("Apply", style: TextStyle(color: Colors.white, decoration: TextDecoration.none, fontWeight: FontWeight.normal, fontSize: 12),),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ));
+
+        })],
         title: Text(
           'Items',
           style: TextStyle(color: constantWidget.blackColor),
@@ -61,7 +158,8 @@ class Menu extends StatelessWidget {
         ),
         itemBuilder: (c, element) {
           return
-        Obx(()=>   Container(
+                GestureDetector(child: Obx(()=>   Container(
+          color: Colors.white,
 
               height: orientation == Orientation.landscape
                   ? Get.height * 0.26
@@ -106,7 +204,9 @@ class Menu extends StatelessWidget {
 
                     top:menuController.switchValue.value? 35:40,
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                        Get.to(()=>ProductDetailsScreen());
+                        },
                         child: Text(
                           'Specifications',
                           style: TextStyle(
@@ -137,40 +237,15 @@ class Menu extends StatelessWidget {
                 ],
               )
 
-              // Column(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-              //     Row(
-              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //       children: [
-              //
-              //
-              //
-              //       ],
-              //     ),
-              //     Row(
-              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //
-              //       children: [
-              //
-              //
-              //
-              //         Obx(()=>   Switch(
-              //             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              //             inactiveThumbColor: constantWidget.greyColor.withOpacity(0.4),
-              //             activeColor: constantWidget.redColor,
-              //
-              //             value: menuController.switchValue.value, onChanged: (value){
-              //           menuController.selectSwitchValue(value);
-              //
-              //         }))],
-              //     ),
-              //
-              //
-              //
-              //   ],
-              // ),
-              ));
+
+              )),
+
+                onTap: (){
+                  print('it is working');
+                  Get.to(()=>EachItems());
+                },
+
+                );
         },
       ),
     );

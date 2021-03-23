@@ -9,6 +9,6 @@ import 'UI/Orders/homeScreen.dart';
 
 void main() {
   runApp(GetMaterialApp(
-    home: EachItems(),
+    home: HomeScreen(),
   ));
 }

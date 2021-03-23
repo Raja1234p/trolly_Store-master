@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:trolly_store/Controller/homescreencontroller.dart';
 import 'package:get/get.dart';
+import 'package:trolly_store/UI/Account/accounts.dart';
 import 'package:trolly_store/UI/Orders/deliveyWidgets.dart';
+import 'package:trolly_store/UI/Orders/menuWidgets.dart';
 import 'package:trolly_store/UI/Orders/schedule.dart';
 
 import '../../constWidgets.dart';
@@ -16,8 +18,8 @@ class HomeScreen extends StatelessWidget {
   final List<Widget> bottomTabBarView = [
     ASAP(),
     Delivery(),
-    ASAP(),
-    ASAP(),
+    Menu(),
+    AccountScreen(),
   ];
   final homeScreenController = Get.put(HomeScreensController());
 
