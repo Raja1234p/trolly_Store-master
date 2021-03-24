@@ -8,6 +8,7 @@ import 'UI/Orders/schedule.dart';
 import 'UI/Orders/homeScreen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(GetMaterialApp(
     home: HomeScreen(),
   ));

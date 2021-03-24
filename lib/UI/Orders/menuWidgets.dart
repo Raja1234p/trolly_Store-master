@@ -125,7 +125,9 @@ class Menu extends StatelessWidget {
         centerTitle: true,
         backgroundColor: constantWidget.whiteColor,
       ),
-      body: GroupedListView<dynamic, String>(
+      body:
+
+      GroupedListView<dynamic, String>(
         elements: _elements,
         groupBy: (element) => element['group'],
         separator: Divider(
