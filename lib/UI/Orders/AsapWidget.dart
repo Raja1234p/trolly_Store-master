@@ -29,6 +29,7 @@ Orientation orientation = MediaQuery.of(context).orientation;
               },
 
             itemBuilder: (context,int index){
+
               return GestureDetector(
                 child: Container(
                   color: Colors.white,
@@ -52,15 +53,16 @@ Orientation orientation = MediaQuery.of(context).orientation;
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               ConstantWidget().CustomText(asapController.getorder[index].userDetail.name, FontWeight.bold, constantWidget.blackColor,15 ),
-                              ConstantWidget().CustomText(asapController.getorder[index].total.toString(), FontWeight.bold, constantWidget.blackColor,15 ),
+                              ConstantWidget().CustomText(' £ ${asapController.getorder[index].total.toString()}', FontWeight.bold, constantWidget.blackColor,15 ),
                             ],
+
                           )),
                             SizedBox(height: Get.height*0.01,),
                         ]),
                         subtitle: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Obx(()=> constantWidget.CustomText(asapController.getorder[index].uniqueId.toString(), FontWeight.normal, constantWidget.greyColor, 13)),
+                            Obx(()=> constantWidget.CustomText('Order No.#${asapController.getorder[index].uniqueId.toString()}', FontWeight.normal, constantWidget.greyColor, 13)),
                             Spacer(),
                             GestureDetector(child: Icon(Icons.phone),
                               onTap: ()async{
@@ -80,8 +82,7 @@ Orientation orientation = MediaQuery.of(context).orientation;
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-
-                               constantWidget.CustomText('Order ready', FontWeight.normal, constantWidget.redColor, 13),
+                               constantWidget.CustomText(asapController.getorder[index].orderStatus==1?'Waiting':asapController.getorder[index].orderStatus==3?'Accepted':asapController.getorder[index].orderStatus==7?'Rejected':'', FontWeight.normal, constantWidget.redColor, 13),
                               Icon(Icons.bike_scooter,color: constantWidget.redColor,)
                             ],),
                         ),
@@ -91,7 +92,7 @@ Orientation orientation = MediaQuery.of(context).orientation;
                   ),
                 ),
                 onTap: (){
-                  Get.to(()=>OrderDetails(name:asapController.getorder[index].userDetail.name ,total: asapController.getorder[index].total.toString(),ordernumber:asapController.getorder[index].uniqueId.toString(), location: 'not finding',
+                  Get.to(()=>OrderDetails(name:asapController.getorder[index].userDetail.name ,total:' £ ${asapController.getorder[index].total.toString()}',ordernumber:asapController.getorder[index].uniqueId.toString(), location: "${asapController.add1.value}",
 
                   phonenumber:(){
                     launchCaller(asapController.getorder[index].userDetail.phone);

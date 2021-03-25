@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:trolly_store/Controller/menucontroller.dart';
+import 'package:trolly_store/Model/productlist.dart';
 import 'package:trolly_store/UI/Orders/eachItem.dart';
 
 import '../../constWidgets.dart';
@@ -127,15 +128,15 @@ class Menu extends StatelessWidget {
       ),
       body:
 
-      GroupedListView<dynamic, String>(
-        elements: _elements,
-        groupBy: (element) => element['group'],
+      GroupedListView<ItemArray, String>(
+        elements: menuController.itemArray,
+        groupBy: (element) => element.productId,
         separator: Divider(
           color: constantWidget.blackColor,
         ),
         groupComparator: (value1, value2) => value2.compareTo(value1),
         itemComparator: (item1, item2) =>
-            item1['name'].compareTo(item2['name']),
+            item1.productId.compareTo(item2.productId),
         order: GroupedListOrder.DESC,
         useStickyGroupSeparators: true,
         groupSeparatorBuilder: (String value) => Padding(
@@ -185,7 +186,7 @@ class Menu extends StatelessWidget {
                   Positioned(
                     top:menuController.switchValue.value?  32:39,
                     left: 8,
-                    child: constantWidget.CustomText(element['weight'],
+                    child: constantWidget.CustomText(element.productId,
                         FontWeight.bold, constantWidget.greyColor, 12),
                   ),
                   Obx(() => Positioned(

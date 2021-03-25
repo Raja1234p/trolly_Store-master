@@ -11,6 +11,7 @@ class OrderDetails extends StatelessWidget {
   final String total;
   final String ordernumber;
   final String location;
+
   ConstantWidget constantWidget = ConstantWidget();
 
    OrderDetails({Key key, this.name, this.total, this.ordernumber, this.location, this.phonenumber,}) : super(key: key);
@@ -84,7 +85,7 @@ mainAxisAlignment: MainAxisAlignment.spaceAround,
                 Positioned(
                     top: 80,
                     left: 10,
-                    child: Text('London,Uk',style: TextStyle(color: Colors.grey),)),
+                    child: Text(location,style: TextStyle(color: Colors.grey),)),
                 Positioned(
                     top: 70,
                     right: 10,
