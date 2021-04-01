@@ -49,7 +49,7 @@ class EachItems extends StatelessWidget {
 
                         eachItemController.enableEdit.value? null: (){
 
-                    eachItemController.itemName.text=eachItemController.itemName.text;
+                    eachItemController.itemName.text=eachItemController.addEachItem.text;
                     Get.back();
                   }, (e) => null,orientation);
 
@@ -106,7 +106,6 @@ class EachItems extends StatelessWidget {
                       ),
                 onTap: () {
                   eachItemController.toggleEdit();
-                  eachItemController.enableEdit.value=false;
                 },
               ),
             ),
@@ -443,6 +442,11 @@ class EachItems extends StatelessWidget {
       )),
     ));
   }
+
+
+
+
+
   validationDialogue(
       BuildContext context,txt
       ) {

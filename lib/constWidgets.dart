@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:trolly_store/UI/CategoryFolder/addcategory.dart';
 class ConstantWidget{
   final blackColor=Colors.black;
   final greyColor=Colors.grey;
@@ -136,7 +137,100 @@ isDense: true,
     });
   }
 
+  addCategoryTextField(TextEditingController controller,String label,bool diableTextField,bool readonly,Function()onTap,TextInputType textInputType){
+    return TextFormField(
+      cursorColor:blackColor,
 
+      keyboardType: textInputType,
+      onTap: onTap,
+      readOnly: readonly,
+      controller: controller,
+      decoration: InputDecoration(
+        isDense: true,
+        labelText: label,
+        labelStyle: TextStyle(color: greyColor),
+
+        enabled: diableTextField,
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: greyColor),
+        ),
+
+        border: UnderlineInputBorder(
+          borderSide: BorderSide(color: greyColor),
+        ),
+
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: blackColor),
+        ),
+      ),
+    );
+  }
+
+customTextFieldDialog(TextEditingController controller,Function() updateValue){
+    return Get.dialog(
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal:20.0),
+        child: Center(child: Container(
+          width: Get.width,
+          height: Get.height*0.27,
+          child: Material(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
+                  child: CustomText('Category Title', FontWeight.bold, blackColor, 22),
+                ),
+
+                SizedBox(height: Get.height*0.012,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+                  child: TextFormField(
+                    cursorColor: blackColor,
+                    controller: controller,
+                    decoration: InputDecoration(
+                      labelText: 'English',
+                      labelStyle: TextStyle(color: Colors.grey),
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: greyColor),
+                      ),
+
+                      border: UnderlineInputBorder(
+                        borderSide: BorderSide(color: greyColor),
+                      ),
+
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: blackColor),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: Get.height*0.01,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [TextButton(onPressed: (){
+                      Get.back();
+                    }, child: Text('Canel'.toUpperCase(),style: TextStyle(color: blackColor),)),
+
+                      TextButton(onPressed: updateValue, child: Text('Ok'.toUpperCase(),style: TextStyle(color: blackColor))),
+                    ],
+                  ),
+                )
+
+
+              ],
+            ),
+          )
+        )),
+      )
+
+    );
+
+}
 
 
 }

@@ -31,6 +31,8 @@ class HomeScreen extends StatelessWidget {
 
       Obx(()=>
          BottomNavigationBar(
+           showUnselectedLabels: true,
+           showSelectedLabels: true ,
            unselectedItemColor: Colors.black12,
               fixedColor: constantWidget.blackColor ,
           onTap: homeScreenController.onItemTap,

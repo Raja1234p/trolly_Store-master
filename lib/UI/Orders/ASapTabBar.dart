@@ -19,35 +19,22 @@ class ASAP extends StatelessWidget {
       appBar: AppBar(
         title: constantWidget.CustomText(
             'Orders', FontWeight.normal, constantWidget.blackColor, 17),
-        bottom:
-
-
-        TabBar(
+        bottom: TabBar(
             automaticIndicatorColorAdjustment: true,
-
             controller: asapController.controller,
             labelColor: Colors.black,
             indicatorColor: constantWidget.redColor,
             labelStyle: TextStyle(fontSize: 16),
             unselectedLabelColor: Colors.black12.withOpacity(0.2),
             unselectedLabelStyle: TextStyle(fontSize: 16),
-
-            tabs: [
-
-                 Tab(child: Text('ASAP')),
-
-              Tab(child: Text('Schedule'))
-
-            ]),
+            tabs: [Tab(child: Text('ASAP')), Tab(child: Text('Schedule'))]),
         backgroundColor: Colors.white,
         centerTitle: true,
       ),
       body: TabBarView(controller: asapController.controller, children: [
-      AsapWidegts(),
+        AsapWidegts(),
         Schedule(),
       ]),
-
-
     );
   }
 }

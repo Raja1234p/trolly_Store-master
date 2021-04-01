@@ -5,7 +5,10 @@ class EachItemController extends GetxController{
   TextEditingController productTitle;
   TextEditingController itemName;
   TextEditingController description;
-FocusNode focusNodeItemName;
+  TextEditingController addEachItem;
+
+
+  FocusNode focusNodeItemName;
   TextEditingController price;
   TextEditingController priceWithoutOffer;
   TextEditingController tax;

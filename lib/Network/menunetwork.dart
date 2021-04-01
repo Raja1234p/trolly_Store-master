@@ -7,7 +7,7 @@ class  MenuNetwork{
   List<Product> product;
   List<ItemArray> itemArray;
 
-  ProductList productList;
+ List<ProductList> getproductlist=[];
   List<String> productsNames=[];
   List<String> itemName=[];
 
@@ -20,9 +20,9 @@ class  MenuNetwork{
    dio.options.headers['lang'] = 0;
 
    var data ={
-     
-       "store_id": "5f7b660c82e4274e19b4658d",
-       "server_token": "vwCvFGWpadWnsKhUF5FFPbeErcS0fcIz"
+
+     "store_id": "5f7b660c82e4274e19b4658d",
+     "server_token": "uvir7XX8Rt4y40btA5yWgNcEvJ3CRNmp"
      
 
    };
@@ -32,6 +32,9 @@ class  MenuNetwork{
      var jsonData = response.data;
      ProductList  productList= ProductList.fromJson(jsonData);
      print("${productList}");
+     getproductlist.add(productList);
+     print('list is working ${getproductlist[0].products[0].name[0]}');
+
 
      List<Product> product = productList.products;
      this.product =product;
@@ -42,6 +45,7 @@ class  MenuNetwork{
 itemnames.forEach((element) {
   element.itemName.forEach((element) {
     itemName.add(element);
+
   });
 
 });

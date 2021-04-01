@@ -1,6 +1,7 @@
 
 
 import 'package:dio/dio.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:trolly_store/Model/getorders.dart';
 import 'package:trolly_store/Model/notifyneworder.dart';
@@ -44,24 +45,29 @@ Dio dio;
 
   if(response.statusCode==200){
     var jsonDaTa = response.data;
+    try{
     for (int i = 0; i < jsonDaTa['orders'].length; i++){
 
       Map<String, dynamic> orderListData =
       new Map<String, dynamic>.from(jsonDaTa['orders'][i]);
     Order order =Order.fromJson(orderListData);
       getorder.add(order);
-      print('this is network class ${getorder[0].uniqueId.toString()}');
+
+
+    }}catch(e){
+
+      Fluttertoast.showToast(msg: 'Order Not Found');
 
     }
 
 
 
-    print(response);
+
 
   // return getOrdersFromJson(jsonDaTa);
 
 
-    print(jsonDaTa['orders']);
+
   }
 }
 
@@ -99,7 +105,7 @@ Future notifyNewOrders() async{
      // print(list);
      this.list = list;
      // print(this.storeDetail);
-     print(this.list);
+     // print(this.list);
 
    }
 

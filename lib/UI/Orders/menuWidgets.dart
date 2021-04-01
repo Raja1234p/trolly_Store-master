@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:trolly_store/Controller/asapController.dart';
 import 'package:trolly_store/Controller/menucontroller.dart';
 import 'package:trolly_store/Model/productlist.dart';
 import 'package:trolly_store/UI/Orders/eachItem.dart';
@@ -12,9 +13,10 @@ import '../specificationdetails.dart';
 
 // ignore: must_be_immutable
 class Menu extends StatelessWidget {
+  var asapController = Get.put(AsapController());
   ConstantWidget constantWidget = ConstantWidget();
   final menuController = Get.put(MenuController());
-
+ProductList productList =ProductList();
   List<Widget> list = [
     Text('sss'),
   ];
@@ -86,7 +88,7 @@ class Menu extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Testing", style: TextStyle(fontWeight: FontWeight.normal, color: Colors.black, decoration: TextDecoration.none, fontSize: 12),),
+                                Expanded(child: Text(menuController.names[index], style: TextStyle(fontWeight: FontWeight.normal, color: Colors.black, decoration: TextDecoration.none, fontSize: 12),)),
                                 Material(
                                   borderOnForeground: false,
                                   child: Checkbox(
@@ -100,7 +102,7 @@ class Menu extends StatelessWidget {
                         );
                       }, separatorBuilder: (context, index){
                     return Divider(thickness: 1, color: Colors.black45,);
-                  }, itemCount: 30),
+                  }, itemCount: menuController.names.length),
                 ),
                 SizedBox(height: Get.height*0.03,),
                 Expanded(
@@ -129,36 +131,50 @@ class Menu extends StatelessWidget {
       body:
 
       GroupedListView<ItemArray, String>(
-        elements: menuController.itemArray,
-        groupBy: (element) => element.productId,
+
+        sort: true,
+        elements: menuController.itemArray.value,
+        groupBy: (element) =>element.productId,
         separator: Divider(
           color: constantWidget.blackColor,
         ),
-        groupComparator: (value1, value2) => value2.compareTo(value1),
+        // groupComparator: (value1, value2) => value2.compareTo(value1),
         itemComparator: (item1, item2) =>
             item1.productId.compareTo(item2.productId),
         order: GroupedListOrder.DESC,
         useStickyGroupSeparators: true,
-        groupSeparatorBuilder: (String value) => Padding(
-          padding: const EdgeInsets.only(top: 0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                padding: EdgeInsets.all(4),
-                color: Colors.red,
-                child: Text(
-                  value,
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: constantWidget.whiteColor,
-                  ),
+        groupSeparatorBuilder: (String value)
+        {
+
+          for(int a=0;a<menuController.product.length;a++){
+            if(menuController.product[a].id==value){
+              return Padding(
+                padding: const EdgeInsets.only(top: 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(4),
+                      color: Colors.red,
+                      child: Text(
+                        menuController.names[a],
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: constantWidget.whiteColor,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
-        ),
+              );
+            }
+
+          }
+          return null;
+
+
+        },
         itemBuilder: (c, element) {
           return
                 GestureDetector(child: Obx(()=>   Container(
@@ -174,19 +190,19 @@ class Menu extends StatelessWidget {
                   Positioned(
                     top:menuController.switchValue.value?  8:18,
                     left: 8,
-                    child: constantWidget.CustomText('Nestle', FontWeight.bold,
+                    child: constantWidget.CustomText(element.itemName[0], FontWeight.bold,
                         constantWidget.blackColor, 15),
                   ),
                   Positioned(
                     right: 15,
                     top:menuController.switchValue.value?  8:9,
-                    child: constantWidget.CustomText('E 7.99', FontWeight.bold,
+                    child: constantWidget.CustomText('asapController', FontWeight.bold,
                         constantWidget.blackColor, 15),
                   ),
                   Positioned(
                     top:menuController.switchValue.value?  32:39,
                     left: 8,
-                    child: constantWidget.CustomText(element.productId,
+                    child: constantWidget.CustomText('element.productId',
                         FontWeight.bold, constantWidget.greyColor, 12),
                   ),
                   Obx(() => Positioned(

@@ -10,6 +10,8 @@ class MenuController extends GetxController{
   var itemArray = List<ItemArray>().obs;
   var itemName = List<String>().obs;
   var productId =''.obs;
+  List<ProductList> productList =List<ProductList>().obs;
+  List<bool> checkbox =List<bool>().obs;
 
 
 
@@ -25,8 +27,11 @@ class MenuController extends GetxController{
     names.value = network.productsNames;
     itemArray.value=network.itemArray;
     itemName.value=network.itemName;
-    print('this is product id${itemArray[0].productId}');
-    print('this is iname ${itemName}');
+    // print('this is product id${product.value[0].categoryId}');
+    // print('this is iname ${itemName}');
+    while(checkbox.length < itemArray.length){
+      checkbox.add(false);
+    }
 
 
 
