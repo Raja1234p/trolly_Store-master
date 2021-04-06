@@ -13,6 +13,7 @@ class EachItems extends StatelessWidget {
   ConstantWidget constantWidget = ConstantWidget();
   final eachItemController = Get.put(EachItemController());
 
+
   @override
   Widget build(BuildContext context) {
     Orientation orientation = MediaQuery.of(context).orientation;
@@ -91,6 +92,8 @@ class EachItems extends StatelessWidget {
                           }
                           else{
                             Get.to(HomeScreen());
+                            eachItemController.enableEdit.value=false;
+
 
 
                           }
@@ -122,7 +125,10 @@ class EachItems extends StatelessWidget {
                       ? Get.height * 0.32
                       : Get.height * 0.15,
                   child: Container(
-
+            color: Colors.grey,
+                    child: ListView.builder(itemBuilder: (context,int index){
+                       return Container();
+                    }),
                   ),
                 ),
                 SizedBox(

@@ -30,10 +30,22 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^3.26.0
   grouped_list: ^3.7.1
-  dio: ^3.0.10
-  url_launcher: ^6.0.2
-  geocoder: ^0.2.1
-  fluttertoast: ^8.0.3
+  dio: any
+  url_launcher: any
+  geocoder: any
+  fluttertoast: any
+  multi_image_picker: any
+  image_picker: any
+  google_maps_flutter: any
+  location: any
+
+  path: any
+  country_code_picker: any
+  image_cropper: any
+  shared_preferences: any
+  geolocator: any
+  intl: any
+  search_map_place_v2: any
 
 dev_dependencies:
   flutter_test:
@@ -52,7 +64,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - assets/images/placeholder.png
+     - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
