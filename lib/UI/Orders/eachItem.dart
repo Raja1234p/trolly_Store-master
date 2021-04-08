@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:trolly_store/Controller/eachitemcontroller.dart';
 import 'package:trolly_store/UI/Orders/homeScreen.dart';
+import 'package:trolly_store/constantClass1.dart';
 
 import '../../constWidgets.dart';
 import 'package:get/get.dart';
@@ -120,17 +122,65 @@ class EachItems extends StatelessWidget {
           child: Column(crossAxisAlignment: CrossAxisAlignment.start,
               // shrinkWrap: true,
               children: [
-                SizedBox(
+            Obx(()=> SizedBox(
+
                   height: orientation == Orientation.landscape
                       ? Get.height * 0.32
                       : Get.height * 0.15,
-                  child: Container(
-            color: Colors.grey,
-                    child: ListView.builder(itemBuilder: (context,int index){
-                       return Container();
+                  child:  ListView.builder(
+
+                      scrollDirection: Axis.horizontal,
+                      itemCount: eachItemController.listofImages.length,
+                      itemBuilder: (context,int index){
+
+                      if(index==eachItemController.listofImages.length-1){
+                        return TextButton(onPressed: (){
+
+                          ConstWidget().showsDialog(context,
+                              'Choose Photo',
+                              'Pick From Gallery',
+                              'Take a pictuer', () {
+                              eachItemController.loadPicker(ImageSource.gallery, context);
+                            },
+                                () {
+                              eachItemController.loadPicker(ImageSource.camera, context);
+                            },);
+                        }, child: Icon(Icons.image,color: Colors.black,size: 40,));
+                      }
+                      else {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: 100,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+
+                              color: Colors.yellow,
+                              image: DecorationImage(image: eachItemController.pickedImage!=null?FileImage(eachItemController.listofImages.elementAt(index+1),):Container(),
+                                fit: BoxFit.cover
+
+                            ),
+
+                            ) ,
+
+                          child: Stack(
+                            overflow: Overflow.visible,
+                            children: [
+                              Positioned(
+                                right: -15,
+                                top: -15,
+                                child: IconButton(icon: Icon(Icons.close,color: Colors.black12.withOpacity(0.6),), onPressed: (){
+                                  eachItemController.listofImages.removeAt(index+1);
+                                }),
+                              ),
+                            ],
+                          ),
+                          ),
+                        );
+                      }
                     }),
-                  ),
-                ),
+                  )),
+
                 SizedBox(
                   height: Get.height * 0.01,
                 ),

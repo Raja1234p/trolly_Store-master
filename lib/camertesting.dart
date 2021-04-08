@@ -104,7 +104,8 @@ class _ImagePickersState extends State<ImagePickers> {
                         onTap: () {
                           _showPicker(context);
                         },
-                        child: CircleAvatar(
+                        child:
+                        CircleAvatar(
                           radius: 55,
                           backgroundColor: Color(0xffFDCF09),
                           child: _image != null

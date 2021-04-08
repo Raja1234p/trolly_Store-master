@@ -16,7 +16,7 @@ import 'camertesting.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(GetMaterialApp(
-    home: ImagePickers(),
+    home: EachItems(),
 
   ));
 }

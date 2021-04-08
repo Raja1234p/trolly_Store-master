@@ -7,7 +7,7 @@ import 'UI/Authentication/Register/register_controller.dart';
 
 import 'package:get/get.dart';
 class ConstWidget {
-  final controller = Get.find<RegisterController>();
+  final controller = Get.put(RegisterController());
   final eachItemController = Get.find<EachItemController>();
 
 

@@ -10,8 +10,8 @@ class RegisterController extends GetxController {
   var countryText = 'United Kingdom'.obs;
   var countryCodeText = '+44'.obs;
  // var pickedImage;
- Rx<File> pickedImage=Rx(File('null'));
-  List<File> listofImages = List<File>().obs;
+
+  Rx<File> pickedImage=Rx(File('null'));
 
 
  @override
@@ -36,7 +36,7 @@ File images = File(picked.path);
     if (picked != null) {
       // print(picked);
        _cropImage(images);
-       listofImages.add(images);
+
 
 
     }
@@ -165,12 +165,11 @@ var countrycodename = ''.obs;
 
 
 
-
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-
+    // increaseindexvalue();
     resetPass =TextEditingController();
     loginemailtxt =TextEditingController();
 
