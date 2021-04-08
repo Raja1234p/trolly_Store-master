@@ -37,6 +37,7 @@ dependencies:
   multi_image_picker: any
   image_picker: any
   google_maps_flutter: any
+
   location: any
 
   path: any
@@ -46,6 +47,7 @@ dependencies:
   geolocator: any
   intl: any
   search_map_place_v2: any
+  google_maps_place_picker: any
 
 dev_dependencies:
   flutter_test:

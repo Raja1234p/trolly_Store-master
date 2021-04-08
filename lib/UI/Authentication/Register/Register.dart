@@ -122,28 +122,37 @@ class RegisterView extends StatelessWidget {
                                   FocusScope.of(context)
                                       .requestFocus(controller.emailNameFocus);
                                 }, TextInputAction.next),
-                                emailandpass(
-                                  controller.emailtxt,
-                                  controller.emailvalidation.value,
-                                  controller.emailvalidation1.value,
-                                  controller.emailtextfieldicon.value,
-                                  'Email or Phone',
-                                  "Please enter a valid email.",
-                                  "Please enter a valid email.",
-                                  TextInputType.emailAddress,
-                                  false,
-                                  null,
-                                  controller.emailNameFocus,
-                                  (term) {
-                                    controller.emailNameFocus.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(controller.passNameFocus);
-                                  },
-                                  true,
-                                  TextInputAction.next,
-                                  controller.showemailarrow.value,
-                                  controller.showemailarrow1.value,
-                                ),
+
+                                Row(children: [Expanded(
+
+                                    flex: 3,
+                                    child: emailandpass(
+                                      controller.emailtxt,
+                                      controller.emailvalidation.value,
+                                      controller.emailvalidation1.value,
+                                      controller.emailtextfieldicon.value,
+                                      'Email or Phone',
+                                      "Please enter a valid email.",
+                                      "Please enter a valid email.",
+                                      TextInputType.emailAddress,
+                                      false,
+                                      null,
+                                      controller.emailNameFocus,
+                                          (term) {
+                                        controller.emailNameFocus.unfocus();
+                                        FocusScope.of(context)
+                                            .requestFocus(controller.passNameFocus);
+                                      },
+                                      true,
+                                      TextInputAction.next,
+                                      controller.showemailarrow.value,
+                                      controller.showemailarrow1.value,
+                                    ),),
+
+                                IconButton(icon: Icon(Icons.add_location_outlined), onPressed:(){
+
+                                })
+                                ],),
                                 emailandpass(
                                   controller.passtxt,
                                   controller.passwordvalidation.value,

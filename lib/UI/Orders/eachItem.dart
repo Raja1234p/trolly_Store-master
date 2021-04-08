@@ -145,7 +145,7 @@ class EachItems extends StatelessWidget {
                                 () {
                               eachItemController.loadPicker(ImageSource.camera, context);
                             },);
-                        }, child: Icon(Icons.image,color: Colors.black,size: 40,));
+                        }, child: Image.asset('assets/images/add_image.png',width: 50,height: 40));
                       }
                       else {
                         return Padding(

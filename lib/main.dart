@@ -9,14 +9,14 @@ import 'UI/Orders/ASapTabBar.dart';
 import 'UI/Orders/eachItem.dart';
 import 'UI/Orders/schedule.dart';
 import 'UI/Orders/homeScreen.dart';
-import 'UI/googlemap.dart';
 import 'UI/review/reviewwidget.dart';
 import 'camertesting.dart';
+import 'locationpicker.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(GetMaterialApp(
-    home: EachItems(),
+    home: LocationPicker(),
 
   ));
 }
