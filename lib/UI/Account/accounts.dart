@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trolly_store/UI/CategoryFolder/Category.dart';
+import 'package:trolly_store/UI/bank_details/bankdetails.dart';
 class AccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,9 @@ class AccountScreen extends StatelessWidget {
               CustomListTile(title: 'Instant Order',icon: Icon(Icons.integration_instructions_sharp),onTap: (){},),
               CustomListTile(title: 'Review',icon: Icon(Icons.star),onTap: (){},),
               CustomListTile(title: 'Earning',icon: Icon(Icons.circle),onTap: (){},),
-              CustomListTile(title: 'Bank Details',icon: Icon(Icons.account_balance_outlined),onTap: (){},),
+              CustomListTile(title: 'Bank Details',icon: Icon(Icons.account_balance_outlined),onTap: (){
+                Get.to(()=>BankDetails());
+              },),
 
 
 

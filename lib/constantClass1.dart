@@ -8,7 +8,8 @@ import 'UI/Authentication/Register/register_controller.dart';
 import 'package:get/get.dart';
 class ConstWidget {
   final controller = Get.put(RegisterController());
-  final eachItemController = Get.find<EachItemController>();
+  final eachItemController = Get.put(EachItemController());
+
 
 
   Widget sizedBox(double height) {

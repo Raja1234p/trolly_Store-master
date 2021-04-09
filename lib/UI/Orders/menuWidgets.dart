@@ -175,7 +175,7 @@ ProductList productList =ProductList();
 
 
         },
-        itemBuilder: (c, element) {
+        indexedItemBuilder: (c, element,index) {
           return
                 GestureDetector(child: Obx(()=>   Container(
           color: Colors.white,
@@ -214,7 +214,7 @@ ProductList productList =ProductList();
                             inactiveThumbColor:
                                 constantWidget.greyColor.withOpacity(0.4),
                             activeColor: constantWidget.redColor,
-                            value: menuController.switchValue.value,
+                            value: menuController.checkbox[index],
                             onChanged: (value) {
                               menuController.selectSwitchValue(value);
                             }),

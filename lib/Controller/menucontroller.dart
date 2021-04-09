@@ -19,6 +19,13 @@ class MenuController extends GetxController{
     switchValue.value=value;
   }
 
+  voidtoogle(){
+
+    for(int i=0;i<product.length;i++){
+      checkbox[i]=checkbox[i]==true?false:true;
+    }
+  }
+
   getNames() async{
     MenuNetwork network = MenuNetwork();
     await network.productName();
