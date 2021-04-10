@@ -8,6 +8,8 @@ import 'package:trolly_store/Network/ordernetwork.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AsapController extends GetxController with SingleGetTickerProviderMixin {
+
+  Future<GetOrders> toShow;
   TabController controller;
   var add1 = ''.obs;
   // var getOrder = GetOrders();
@@ -25,11 +27,13 @@ class AsapController extends GetxController with SingleGetTickerProviderMixin {
     }
   }
 
-  void Getorderlist() async {
+   Getorderlist() async {
     await network.toShowOrder();
 
     getorder.value = network.getorder;
+    print('refresh');
   }
+
 
   void nofifyNewOrder() async {
     await network.notifyNewOrders();
@@ -59,6 +63,7 @@ class AsapController extends GetxController with SingleGetTickerProviderMixin {
     // OrderNetwork.Orders();
     super.onInit();
     controller = TabController(vsync: this, length: 2);
+
     Getorderlist();
     nofifyNewOrder();
     getUserAddress();

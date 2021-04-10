@@ -15,11 +15,12 @@ import 'UI/review/reviewwidget.dart';
 import 'camertesting.dart';
 import 'locationpicker.dart';
 import 'package:trolly_store/UI/bank_details/bankdetails.dart';
+import 'package:trolly_store/UI/history/orderhistory.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(GetMaterialApp(
-    home: HomeScreen(),
+    home: History(),
 
   ));
 }

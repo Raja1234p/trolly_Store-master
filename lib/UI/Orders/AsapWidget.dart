@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:trolly_store/Controller/asapController.dart';
+import 'package:trolly_store/Network/ordernetwork.dart';
 import 'package:trolly_store/UI/Orders/orderdetails.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -14,20 +15,38 @@ class AsapWidegts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Orientation orientation = MediaQuery.of(context).orientation;
+
+    Future<void> toshowdata()async{
+      print('working');
+
+     await asapController.Getorderlist();
+
+     for(int i=0;i<asapController.getorder.length;i++){
+      print(asapController.getorder[i].userDetail.name);
+     }
+
+
+    }
     return Scaffold(
       body: SafeArea(
-        child: Obx(
-          () => asapController.getorder == null
-              ? Center(child: CircularProgressIndicator())
-              : ListView.separated(
-                  itemCount: asapController.getorder.length,
+        child:GetX<AsapController>(
+          builder: (update){
+            return RefreshIndicator(
+              color: Colors.black,
+
+              child:
+              update.getorder.length==0
+                  ? Center(child: CircularProgressIndicator())
+                  : ListView.separated(
+                  physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                  itemCount: update.getorder.length,
                   separatorBuilder: (context, index) {
                     return Divider(
                       height: 2,
                     );
                   },
                   itemBuilder: (context, int index) {
-                    if (asapController.getorder.hashCode == 200) {
+                    if (update.getorder.hashCode == 200) {
                       return CircularProgressIndicator();
                     }
 
@@ -50,41 +69,41 @@ class AsapWidegts extends StatelessWidget {
                                 ),
                               ),
                               title: Column(children: [
-                                Obx(() => Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        ConstantWidget().CustomText(
-                                            asapController.getorder[index]
-                                                .userDetail.name,
-                                            FontWeight.bold,
-                                            constantWidget.blackColor,
-                                            15),
-                                        ConstantWidget().CustomText(
-                                            ' £ ${asapController.getorder[index].total.toString()}',
-                                            FontWeight.bold,
-                                            constantWidget.blackColor,
-                                            15),
-                                      ],
-                                    )),
+                                Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    ConstantWidget().CustomText(
+                                        update.getorder[index]
+                                            .userDetail.name,
+                                        FontWeight.bold,
+                                        constantWidget.blackColor,
+                                        15),
+                                    ConstantWidget().CustomText(
+                                        ' £ ${update.getorder[index].total.toString()}',
+                                        FontWeight.bold,
+                                        constantWidget.blackColor,
+                                        15),
+                                  ],
+                                ),
                                 SizedBox(
                                   height: Get.height * 0.01,
                                 ),
                               ]),
                               subtitle: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Obx(() => constantWidget.CustomText(
-                                      'Order No.#${asapController.getorder[index].uniqueId.toString()}',
+                                   constantWidget.CustomText(
+                                      'Order No.#${update.getorder[index].uniqueId.toString()}',
                                       FontWeight.normal,
                                       constantWidget.greyColor,
-                                      13)),
+                                      13),
                                   Spacer(),
                                   GestureDetector(
                                     child: Icon(Icons.phone),
                                     onTap: () async {
-                                      await launchCaller(asapController
+                                      await launchCaller(update
                                           .getorder[index].userDetail.phone);
                                     },
                                   ),
@@ -101,22 +120,22 @@ class AsapWidegts extends StatelessWidget {
                                     left: 16.0, right: 16),
                                 child: Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  MainAxisAlignment.spaceBetween,
                                   children: [
                                     constantWidget.CustomText(
-                                        asapController.getorder[index]
-                                                    .orderStatus ==
-                                                1
+                                        update.getorder[index]
+                                            .orderStatus ==
+                                            1
                                             ? 'Waiting'
-                                            : asapController.getorder[index]
-                                                        .orderStatus ==
-                                                    3
-                                                ? 'Accepted'
-                                                : asapController.getorder[index]
-                                                            .orderStatus ==
-                                                        7
-                                                    ? 'Rejected'
-                                                    : '',
+                                            : update.getorder[index]
+                                            .orderStatus ==
+                                            3
+                                            ? 'Accepted'
+                                            : update.getorder[index]
+                                            .orderStatus ==
+                                            7
+                                            ? 'Rejected'
+                                            : '',
                                         FontWeight.normal,
                                         constantWidget.redColor,
                                         13),
@@ -133,25 +152,30 @@ class AsapWidegts extends StatelessWidget {
                       ),
                       onTap: () {
                         Get.to(() => OrderDetails(
-                              name: asapController
-                                  .getorder[index].userDetail.name,
-                              total:
-                                  ' £ ${asapController.getorder[index].total.toString()}',
-                              ordernumber: asapController
-                                  .getorder[index].uniqueId
-                                  .toString(),
-                              location: "${asapController.add1.value}",
-                              phonenumber: () {
-                                launchCaller(asapController
-                                    .getorder[index].userDetail.phone);
-                              },
-                            ));
+                          name: update
+                              .getorder[index].userDetail.name,
+                          total:
+                          ' £ ${update.getorder[index].total.toString()}',
+                          ordernumber: update
+                              .getorder[index].uniqueId
+                              .toString(),
+                          location: "${update.add1.value}",
+                          phonenumber: () {
+                            launchCaller(update
+                                .getorder[index].userDetail.phone);
+                          },
+                        ));
                       },
                     );
                   }),
+              onRefresh: toshowdata,
+            );
+          },
+
         ),
-      ),
-    );
+
+
+    ));
   }
 
   Future<void> launchCaller(number) async {
