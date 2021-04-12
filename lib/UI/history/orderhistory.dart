@@ -32,6 +32,7 @@ class History extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('History',style: TextStyle(color: Colors.black),),
         centerTitle: true,
@@ -49,6 +50,8 @@ class History extends StatelessWidget {
 
           GroupedListView<dynamic, String>(
             physics: ScrollPhysics(),
+            // floatingHeader: true,
+            stickyHeaderBackgroundColor: Colors.white,
             sort: true,
             elements: _elements,
             groupBy: (element) => element['group'],
@@ -72,17 +75,18 @@ class History extends StatelessWidget {
                     child: Text(
                       value,
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
                     ),
                   ),
                 ],
               ),
             ),
             indexedItemBuilder: (c, element,index) {
-              return GestureDetector(
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom:8.0),
+              return Padding(
+                padding: const EdgeInsets.only(bottom:8.0),
+                child: GestureDetector(
                   child: Container(
+                    color: Colors.white,
                       height: 110,
                       width: MediaQuery.of(context).size.width,
 
@@ -114,10 +118,11 @@ class History extends StatelessWidget {
                         ],
                       )
                   ),
+                  onTap: (){
+                    Get.to(()=>OtherDetailsTabBar());
+                  },
+
                 ),
-                onTap: (){
-                  Get.to(()=>OtherDetailsTabBar());
-                },
               );
 
             },
