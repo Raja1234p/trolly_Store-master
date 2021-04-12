@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:trolly_store/Controller/asapController.dart';
 import 'package:trolly_store/Controller/menucontroller.dart';
 import 'package:trolly_store/Model/productlist.dart';
+import 'package:trolly_store/UI/history/otherdetailstabbar.dart';
 import 'package:trolly_store/constWidgets.dart';
 import 'package:get/get.dart';
 import 'history_contoller.dart';
@@ -78,40 +79,45 @@ class History extends StatelessWidget {
               ),
             ),
             indexedItemBuilder: (c, element,index) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom:8.0),
-                child: Container(
-                    height: 110,
-                    width: MediaQuery.of(context).size.width,
+              return GestureDetector(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom:8.0),
+                  child: Container(
+                      height: 110,
+                      width: MediaQuery.of(context).size.width,
 
-                    child: Stack(
-                      clipBehavior: Clip.none,
-                      children: [
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
 
-                        Positioned(
-                            top: 35,
-                            left: -17,
-                            child: Image.asset('assets/images/placeholder.png',width: 120,)),
-                        Positioned(
-                            left: 100,
-                            top: 20,
-                            child: constantWidget.CustomText('Muhammad Sahib', FontWeight.bold, Colors.black, 18)),
-                        Positioned(
-                            right: 20,
-                            top: 20,
-                            child: constantWidget.CustomText('E 12.4', FontWeight.bold, Colors.black, 18)),
-                        Positioned(
-                            left: 98,
-                            top: 50,
-                            child: constantWidget.CustomText('Order No. #190', FontWeight.bold, Colors.black45, 18)),
-                        Positioned(
-                            left: 98,
-                            top: 94,
-                            child: constantWidget.CustomText('8:56 PM', FontWeight.bold, Colors.black45, 18)),
+                          Positioned(
+                              top: 35,
+                              left: -17,
+                              child: Image.asset('assets/images/placeholder.png',width: 120,)),
+                          Positioned(
+                              left: 100,
+                              top: 20,
+                              child: constantWidget.CustomText('Muhammad Sahib', FontWeight.bold, Colors.black, 18)),
+                          Positioned(
+                              right: 20,
+                              top: 20,
+                              child: constantWidget.CustomText('E 12.4', FontWeight.bold, Colors.black, 18)),
+                          Positioned(
+                              left: 98,
+                              top: 50,
+                              child: constantWidget.CustomText('Order No. #190', FontWeight.bold, Colors.black45, 18)),
+                          Positioned(
+                              left: 98,
+                              top: 94,
+                              child: constantWidget.CustomText('8:56 PM', FontWeight.bold, Colors.black45, 18)),
 
-                      ],
-                    )
+                        ],
+                      )
+                  ),
                 ),
+                onTap: (){
+                  Get.to(()=>OtherDetailsTabBar());
+                },
               );
 
             },

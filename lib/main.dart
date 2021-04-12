@@ -16,6 +16,7 @@ import 'camertesting.dart';
 import 'locationpicker.dart';
 import 'package:trolly_store/UI/bank_details/bankdetails.dart';
 import 'package:trolly_store/UI/history/orderhistory.dart';
+import 'package:trolly_store/UI/history/otherdetailstabbar.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
